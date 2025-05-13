@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import { ThemeProvider } from "./context/ThemeContext";
 import Hero from "./sections/Hero";
+import Projects from "./sections/Projects";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Header />
         <main>
           <Hero />
+          <Projects />
         </main>
       </div>
     </ThemeProvider>
