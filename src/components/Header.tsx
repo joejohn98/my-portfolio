@@ -47,9 +47,9 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           <a
             href="#home"
-            className="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300"
+            className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300"
           >
-            <h1 className="text-4xl text-blue-600 dark:text-blue-400">
+            <h1 className="text-3xl md:text-4xl text-blue-600 dark:text-blue-400">
               Joe John
             </h1>
           </a>
@@ -90,6 +90,25 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
+
+       
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg py-4 px-4 absolute top-full left-0 right-0 transition-all duration-300">
+          <nav className="flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300 py-2"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
