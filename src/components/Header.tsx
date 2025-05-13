@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import type { NavLink } from "../types";
 
@@ -12,6 +12,7 @@ const navLinks: NavLink[] = [
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -29,6 +30,10 @@ const Header: React.FC = () => {
     };
   }, []);
 
+   const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -42,9 +47,9 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           <a
             href="#home"
-            className="text-2xl font-bold text-gray-900 dark:text-white transition-colors duration-300"
+            className="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300"
           >
-            <h1 className="text-2xl text-blue-600 dark:text-blue-400">
+            <h1 className="text-4xl text-blue-600 dark:text-blue-400">
               Joe John
             </h1>
           </a>
@@ -66,6 +71,23 @@ const Header: React.FC = () => {
               {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
             </button>
           </nav>
+
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleTheme}
+              className="p-2 mr-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+            </button>
+            <button
+              onClick={toggleMenu}
+              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
     </header>
