@@ -1,4 +1,5 @@
 
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./context/ThemeContext";
 import About from "./sections/About";
@@ -17,6 +18,7 @@ function App() {
           <About />
           <Contact />
         </main>
+        <Footer />
       </div>
     </ThemeProvider>
   );
