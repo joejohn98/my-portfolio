@@ -1,5 +1,6 @@
 import { Phone, Mail, Check } from "lucide-react";
 import { motion } from "framer-motion";
+import ContactForm from "../components/ContactForm";
 
 const Contact: React.FC = () => {
   const container = {
@@ -69,7 +70,7 @@ const Contact: React.FC = () => {
                       href="mailto:joejohnkj@gmail.com"
                       className="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400"
                     >
-                     joejohnkj@gmail.com
+                      joejohnkj@gmail.com
                     </a>
                   </div>
                 </motion.div>
@@ -188,6 +189,20 @@ const Contact: React.FC = () => {
                   </svg>
                 </a>
               </div>
+            </div>
+          </motion.div>
+          {/* Right Column - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="bg-white dark:bg-[#020817] border border-transparent dark:border-gray-700 rounded-xl p-6 shadow-lg h-full">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Send Me a Message
+              </h3>
+              <ContactForm />
             </div>
           </motion.div>
         </div>
