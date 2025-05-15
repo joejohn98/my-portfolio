@@ -6,6 +6,7 @@ import Button from "./Button"
 import { Mail, User, MessageSquare } from "lucide-react"
 import type { ContactFormData } from "../types"
 import { motion, AnimatePresence } from "framer-motion"
+import emailjs from "@emailjs/browser";
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -63,17 +64,29 @@ const ContactForm: React.FC = () => {
     if (validateForm()) {
       setIsSubmitting(true)
 
-      // Simulate API call
-      setTimeout(() => {
-        setIsSubmitting(false)
-        setSubmitSuccess(true)
-        setFormData({ name: "", email: "", message: "" })
+       // Send email using EmailJS
+      emailjs
+        .send("service_tvsa5nm", "template_tzsknuq", {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        })
+        .then((response: { status: number; text: string }) => {
+          console.log("SUCCESS!", response.status, response.text);
+          setIsSubmitting(false);
+          setSubmitSuccess(true);
+          setFormData({ name: "", email: "", message: "" });
 
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          setSubmitSuccess(false)
-        }, 5000)
-      }, 1500)
+          // Reset success message after 5 seconds
+          setTimeout(() => {
+            setSubmitSuccess(false);
+          }, 5000);
+        })
+        .catch((err: Error) => {
+          console.error("FAILED...", err);
+          setIsSubmitting(false);
+        });
+    
     }
   }
 

@@ -6,8 +6,16 @@ import About from "./sections/About";
 import Contact from "./sections/Contact";
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
+import { useEffect } from "react";
+import { initEmailJS } from "./utils/emailjs";
 
 function App() {
+
+   // Initialize EmailJS
+    useEffect(() => {
+      // Replace with your actual EmailJS user ID
+      initEmailJS("jr4HKbcyEsvcQqCI-");
+    }, []);
   return (
     <ThemeProvider>
       <AnimatePresence>
