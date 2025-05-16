@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           
           <div className="flex items-center space-x-4">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/joejohn98"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/joejohn-jj/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
@@ -34,17 +34,9 @@ const Footer: React.FC = () => {
             >
               <Linkedin size={20} />
             </a>
+
             <a
-              href="https://twitter.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-              aria-label="Twitter"
-            >
-              <Twitter size={20} />
-            </a>
-            <a
-              href="mailto:your.email@example.com"
+              href="mailto:joejohnkj@gmail.com"
               className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
               aria-label="Email"
             >

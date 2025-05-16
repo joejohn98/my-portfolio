@@ -9,8 +9,8 @@ export const projects: Project[] = [
     description:
       'A modern e-commerce platform built with React, TypeScript, and Redux, offering a seamless shopping experience for fashion enthusiasts.',
     tags: ['React', 'TypeScript', 'Redux Toolkit', 'Tailwind CSS', 'API Integration' ,'React Router'],
-    demoUrl: 'https://your-demo-url.com/urban-threads',
-    githubUrl: 'https://github.com/your-username/urban-threads',
+    demoUrl: 'https://urban-threads-app.onrender.com',
+    githubUrl: 'https://github.com/joejohn98/urban-threads',
     imageUrl: 'https://ik.imagekit.io/m2fpyi4uw/Projects/Urban-Threads.png?updatedAt=1746897118849',
 
   },
@@ -20,8 +20,8 @@ export const projects: Project[] = [
     description:
       'A feature-rich recipe management app that lets users add, organize, and favorite recipes with local persistence and a modern UI.',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'React Router', 'Context API'],
-    demoUrl: 'https://your-demo-url.com/recipe-hub',
-    githubUrl: 'https://github.com/your-username/recipe-hub',
+    demoUrl: 'https://recipe-box-app-a5a3.onrender.com',
+    githubUrl: 'https://github.com/joejohn98/recipe-box',
     imageUrl: 'https://ik.imagekit.io/m2fpyi4uw/Projects/Recipe-Box.png?updatedAt=1746897119158'
 
   },
@@ -31,8 +31,8 @@ export const projects: Project[] = [
     description:
       'A responsive web application to manage products, stock levels, and departments, with sorting, filtering, and real-time updates.',
     tags: ['React', 'Tailwind CSS', 'React Router', 'Context API', 'API Integration'],
-    demoUrl: 'https://your-demo-url.com/inventory-app',
-    githubUrl: 'https://github.com/your-username/inventory-management-app',
+    demoUrl: 'https://inventory-hub-vi5q.onrender.com',
+    githubUrl: 'https://github.com/joejohn98/inventory-hub',
     imageUrl: 'https://ik.imagekit.io/m2fpyi4uw/Projects/Inventory-Hub.png?updatedAt=1746897118339',
 
   },
@@ -42,8 +42,8 @@ export const projects: Project[] = [
     description:
       'A beautifully designed travel destination explorer that lets users browse destinations by continent and country, with detailed info and global coverage.',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'React Router DOM', 'Context API'],
-    demoUrl: 'https://your-demo-url.com/destino',
-    githubUrl: 'https://github.com/your-username/destino',
+    demoUrl: 'https://destino-trip-advisor-app.onrender.com',
+    githubUrl: 'https://github.com/joejohn98/destino',
     imageUrl: 'https://ik.imagekit.io/m2fpyi4uw/Projects/Destino-Travel-Desination.png?updatedAt=1746897118852'
 
   }

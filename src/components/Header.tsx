@@ -59,7 +59,7 @@ const Header: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <span className="text-2xl text-blue-600 dark:text-blue-400">Joe John</span>
+            <span className="text-2xl md:text-3xl text-blue-600 dark:text-blue-400">Joe John</span>
           </motion.a>
 
           <nav className="hidden md:flex items-center space-x-8">

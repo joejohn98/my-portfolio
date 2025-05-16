@@ -13,7 +13,6 @@ function App() {
 
    // Initialize EmailJS
     useEffect(() => {
-      // Replace with your actual EmailJS user ID
       initEmailJS("jr4HKbcyEsvcQqCI-");
     }, []);
   return (

@@ -154,11 +154,11 @@ const Contact: React.FC = () => {
 
               <div className="flex items-center space-x-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/joejohn98"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 w-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 hover:bg-blue-500 hover:border-blue-500 hover:text-white dark:hover:bg-blue-500 dark:hover:border-blue-500 transition-colors"
-                  aria-label="GitHub"
+                  
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -172,11 +172,11 @@ const Contact: React.FC = () => {
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/joejohn-jj/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 w-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 hover:bg-blue-500 hover:border-blue-500 hover:text-white dark:hover:bg-blue-500 dark:hover:border-blue-500 transition-colors"
-                  aria-label="LinkedIn"
+                  
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
