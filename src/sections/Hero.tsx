@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
             <Button
               variant="outline"
               onClick={() =>
-                window.open("/src/assets/JoeJohn_frontend_developer.pdf", "_blank")
+                window.open("/assets/JoeJohn_frontend_developer.pdf", "_blank")
               }
               className="gap-1"
             >
