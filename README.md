@@ -50,13 +50,6 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite. T
    yarn install
    ```
 
-3. Create a `.env` file in the root directory and add your EmailJS credentials:
-   ```
-   VITE_EMAILJS_PUBLIC_KEY=your_public_key
-   VITE_EMAILJS_SERVICE_ID=your_service_id
-   VITE_EMAILJS_TEMPLATE_ID=your_template_id
-   ```
-
 ### Running the Application
 
 1. Start the development server:
