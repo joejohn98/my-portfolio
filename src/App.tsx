@@ -8,13 +8,13 @@ import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 import { useEffect } from "react";
 import { initEmailJS } from "./utils/emailjs";
+import { EMAILJS_CONFIG } from "./utils/constants";
 
 function App() {
-
-   // Initialize EmailJS
-    useEffect(() => {
-      initEmailJS("jr4HKbcyEsvcQqCI-");
-    }, []);
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
   return (
     <ThemeProvider>
       <AnimatePresence>

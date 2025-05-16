@@ -1,94 +1,18 @@
-
-
-import type React from "react"
-import { useState } from "react"
-import Button from "./Button"
-import { Mail, User, MessageSquare } from "lucide-react"
-import type { ContactFormData } from "../types"
-import { motion, AnimatePresence } from "framer-motion"
-import emailjs from "@emailjs/browser";
+import type React from "react";
+import Button from "./Button";
+import { Mail, User, MessageSquare } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useContactForm } from "../hooks/useContactForm";
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    message: "",
-  })
-
-  const [errors, setErrors] = useState<Partial<ContactFormData>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-
-  const validateForm = (): boolean => {
-    const newErrors: Partial<ContactFormData> = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
-      newErrors.email = "Email address is invalid"
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required"
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }))
-
-    // Clear error for this field when user starts typing
-    if (errors[name as keyof ContactFormData]) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: undefined,
-      }))
-    }
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (validateForm()) {
-      setIsSubmitting(true)
-
-       // Send email using EmailJS
-      emailjs
-        .send("service_tvsa5nm", "template_tzsknuq", {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        })
-        .then((response: { status: number; text: string }) => {
-          console.log("SUCCESS!", response.status, response.text);
-          setIsSubmitting(false);
-          setSubmitSuccess(true);
-          setFormData({ name: "", email: "", message: "" });
-
-          // Reset success message after 5 seconds
-          setTimeout(() => {
-            setSubmitSuccess(false);
-          }, 5000);
-        })
-        .catch((err: Error) => {
-          console.error("FAILED...", err);
-          setIsSubmitting(false);
-        });
-    
-    }
-  }
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    submitSuccess,
+    handleChange,
+    handleSubmit,
+  } = useContactForm();
 
   return (
     <motion.form
@@ -112,8 +36,15 @@ const ContactForm: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <label
+          htmlFor="name"
+          className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Name
         </label>
         <div className="relative">
@@ -127,7 +58,9 @@ const ContactForm: React.FC = () => {
             value={formData.name}
             onChange={handleChange}
             className={`pl-10 block w-full rounded-lg border ${
-              errors.name ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
+              errors.name
+                ? "border-red-500 dark:border-red-500"
+                : "border-gray-300 dark:border-gray-600"
             } bg-white dark:bg-[#020817] p-2.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-1 focus:outline-none`}
             placeholder="Your name"
           />
@@ -151,7 +84,10 @@ const ContactForm: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="email"
+          className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Email
         </label>
         <div className="relative">
@@ -165,7 +101,9 @@ const ContactForm: React.FC = () => {
             value={formData.email}
             onChange={handleChange}
             className={`pl-10 block w-full rounded-lg border ${
-              errors.email ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
+              errors.email
+                ? "border-red-500 dark:border-red-500"
+                : "border-gray-300 dark:border-gray-600"
             } bg-white dark:bg-[#020817] p-2.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-1 focus:outline-none`}
             placeholder="your.email@example.com"
           />
@@ -189,12 +127,18 @@ const ContactForm: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="message"
+          className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Message
         </label>
         <div className="relative">
           <div className="absolute top-3 left-3 pointer-events-none">
-            <MessageSquare size={18} className="text-gray-500 dark:text-gray-400" />
+            <MessageSquare
+              size={18}
+              className="text-gray-500 dark:text-gray-400"
+            />
           </div>
           <textarea
             id="message"
@@ -203,7 +147,9 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             rows={5}
             className={`pl-10 block w-full rounded-lg border ${
-              errors.message ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
+              errors.message
+                ? "border-red-500 dark:border-red-500"
+                : "border-gray-300 dark:border-gray-600"
             } bg-white dark:bg-[#020817] p-2.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-1 focus:outline-none`}
             placeholder="Your message..."
           />
@@ -227,7 +173,12 @@ const ContactForm: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
-        <Button type="submit" variant="primary" className="w-full" disabled={isSubmitting}>
+        <Button
+          type="submit"
+          variant="primary"
+          className="w-full"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? (
             <>
               <svg
@@ -236,7 +187,14 @@ const ContactForm: React.FC = () => {
                 fill="none"
                 viewBox="0 0 24 24"
               >
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
                 <path
                   className="opacity-75"
                   fill="currentColor"
@@ -251,7 +209,7 @@ const ContactForm: React.FC = () => {
         </Button>
       </motion.div>
     </motion.form>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;
