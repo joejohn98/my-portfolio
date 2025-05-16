@@ -49,9 +49,7 @@ const About: React.FC = () => {
             <div className="bg-white dark:bg-[#020817] border border-transparent dark:border-gray-700 rounded-xl p-6 shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">My Story</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                I'm a passionate frontend developer with a strong foundation in building modern web applications. My
-                journey in web development began over 2 years ago, and I've been in love with creating beautiful,
-                functional user interfaces ever since.
+                I'm a passionate frontend developer focused on creating clean, user-friendly, and responsive web applications. With a strong foundation in modern JavaScript frameworks
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 I specialize in React development, with expertise in TypeScript, modern JavaScript, and responsive
@@ -59,8 +57,8 @@ const About: React.FC = () => {
                 experiences.
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                When I'm not coding, you can find me exploring new technologies, contributing to open source, or sharing
-                my knowledge through blog posts and community engagement.
+                I'm constantly learning and exploring new technologies to stay at the forefront of web
+              development. I believe in the power of collaboration and enjoy working with teams to bring ideas to life.
               </p>
             </div>
           </motion.div>

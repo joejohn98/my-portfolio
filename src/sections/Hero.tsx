@@ -90,7 +90,9 @@ const Hero: React.FC = () => {
             </Button>
             <Button
               variant="outline"
-              onClick={() => window.open("/resume.pdf", "_blank")}
+              onClick={() =>
+                window.open("/src/assets/JoeJohn_frontend_developer.pdf", "_blank")
+              }
               className="gap-1"
             >
               Resume <ExternalLink size={16} />
