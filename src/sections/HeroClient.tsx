@@ -22,8 +22,8 @@ export default function HeroClient({ skills }: HeroClientProps) {
           </h1>
 
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg animate-slide-up delay-100">
-            I'm a Fullstack Developer with a passion for creating beautiful,
-            responsive, and user-friendly web experiences with modern
+            I&apos;m a Fullstack Developer with a passion for creating
+            beautiful, responsive, and user-friendly web experiences with modern
             technologies. Passionate about creating scalable applications that
             solve real problems.
           </p>
