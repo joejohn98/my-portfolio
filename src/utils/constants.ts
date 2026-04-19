@@ -1,0 +1,11 @@
+
+export const EMAILJS_CONFIG = {
+  SERVICE_ID: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+  TEMPLATE_ID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+  PUBLIC_KEY: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+};
+
+export const FORM_VALIDATION = {
+  MIN_MESSAGE_LENGTH: 10,
+  EMAIL_REGEX: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+};
