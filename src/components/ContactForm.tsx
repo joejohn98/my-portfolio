@@ -2,22 +2,48 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
-import Button from "./Button";
 import { Mail, User, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useContactForm } from "../hooks/useContactForm";
 import { NextPage } from "next";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { ContactFormData, contactFormSchema } from "@/lib/validation";
+import Button from "./Button";
+import { sendEmail } from "@/lib/actions/sendEmail";
 
 const ContactForm: NextPage = () => {
   const [isMounted, setIsMounted] = useState(false);
+
   const {
-    formData,
-    errors,
-    isSubmitting,
-    submitSuccess,
-    handleChange,
+    register,
     handleSubmit,
-  } = useContactForm();
+    setError,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const result = await sendEmail(data);
+      if (result.success) {
+        reset();
+      } else {
+        setError("root", {
+          message: result.error,
+        });
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to send email";
+      setError("root", {
+        message: errorMessage,
+      });
+    }
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -25,14 +51,14 @@ const ContactForm: NextPage = () => {
 
   return (
     <motion.form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="space-y-4 max-w-md mx-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       <AnimatePresence>
-        {submitSuccess && (
+        {isSubmitSuccessful && (
           <motion.div
             className="p-4 mb-4 text-sm rounded-lg bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200"
             initial={{ opacity: 0, y: -20 }}
@@ -63,9 +89,7 @@ const ContactForm: NextPage = () => {
           <input
             type="text"
             id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
+            {...register("name")}
             className={`pl-10 block w-full rounded-lg border ${
               errors.name
                 ? "border-red-500 dark:border-red-500"
@@ -82,7 +106,7 @@ const ContactForm: NextPage = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              {errors.name}
+              {errors.name.message}
             </motion.p>
           )}
         </AnimatePresence>
@@ -106,9 +130,7 @@ const ContactForm: NextPage = () => {
           <input
             type="email"
             id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            {...register("email")}
             className={`pl-10 block w-full rounded-lg border ${
               errors.email
                 ? "border-red-500 dark:border-red-500"
@@ -125,7 +147,7 @@ const ContactForm: NextPage = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              {errors.email}
+              {errors.email.message}
             </motion.p>
           )}
         </AnimatePresence>
@@ -151,9 +173,7 @@ const ContactForm: NextPage = () => {
           </div>
           <textarea
             id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
+            {...register("message")}
             rows={5}
             className={`pl-10 block w-full rounded-lg border ${
               errors.message
@@ -171,7 +191,7 @@ const ContactForm: NextPage = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              {errors.message}
+              {errors.message.message}
             </motion.p>
           )}
         </AnimatePresence>
